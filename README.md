@@ -25,34 +25,30 @@ están sentadas y la información obtenida.
 ![image](https://user-images.githubusercontent.com/90789825/167894839-f8252c68-1877-47bf-9093-7353b020c0c5.png)
 
 ## Reglas y comentarios adicionales
-1. **Deus ex Machina:** Reducción de puntaje por solicitar asistencia humana.
-   - Entrega de la bolsa. **Penalty:** -100pts.
-   - Encontrar al operador mientras la sigue:
-     - Interacción natural (por ejemplo, saludar o llamar). **Penalty:** -100pts.
-     - Interacción no natural (por ejemplo, levantar ambas manos o saltar). **Penalty:** -200pts.
-     - Tocar el robot (por ejemplo, tirar de la mano del robot). **Penalty:** -400pts.
-2. **Obstáculos:** El robot se enfrentará a 4 obstáculos en su camino en cualquier orden:
-   A. Una multitud obstruyendo el camino.
-   B. Un pequeño objeto en el suelo.
-   C. Un objeto 3D difícil de ver.
-   D. Una pequeña área bloqueada con barreras retráctiles.
-3. **Localización del Coche:** No hay coche afuera. En cambio, se supone que una ubicación fija es una ubicación de automóvil fuera de la arena.
-4. **Alcanzar el Coche:** El robot puede llegar a la ubicación del automóvil solo siguiendo al operador.
-5. **Siguiendo al operador:** El robot debe indicar al operador cuando está listo para
-seguir. El operador camina con naturalidad hacia el coche. Después de llegar al coche, el operador
-le quita la bolsa al robot y le agradece.
+1. **Deus ex Machina:** Se aplica reducción de puntaje por solicitud de asistencia humana por huésped.
+2. **Invitados:** Cada invitado tiene asignado un nombre predefinido y una bebida favorita. Al menos uno
+de los invitados es mujer.
+3. **Repetición de nombres:** El robot puede pedir repetir el nombre si no lo ha entendido.
+4. **Nombres mal entendidos:** si el robot malinterpreta el nombre. **Penalty:** -50pts.
+5. **Conocer a los invitados:** cuando llega un invitado, el robot debe preguntarle a esa persona su nombre y
+bebida favorita.
+6. **Presentación de invitados:** Al presentar invitados, el robot debe señalar a la persona que
+se presenta, indicando su nombre y bebida favorita.
+7. **Personas sentadas:** El robot debe señalar el lugar o ubicación en la que se puede sentar el huésped.
+8. **Cambio de lugares:** cada vez que llega un nuevo invitado, las personas en la sala de estar intercambian
+lugares.
+
 ## Instrucciones del árbitro
 Los árbitros necesitan:
-- Seleccione un voluntario como operador.
-- Seleccione de tres a cuatro personas para obstruir el camino del robot afuera.
-- Elija las posiciones de las maletas y asigne una maleta al operador.
-- Elija a qué obstáculos se enfrentará el robot en el exterior mientras sigue al operador.
-- Elige la ubicación del coche.
-- Cuidado con el robot cuando salga de la arena.
+- Asigne nombre y bebida a 3 voluntarios.
+- Organice (y reorganice) a las personas en la sala de estar.
+- Abrir la puerta cuando lo solicite el robot.
+
 ## Instrucciones del CO
 2h antes del test:
-- Seleccione y anuncie el punto de partida del robot.
-- Seleccione qué maletas se utilizarán.
+- Anuncie la ubicación donde comienza el robot.
+- Seleccionar y anunciar un voluntario como John.
+
 ## Hoja de puntuacion
 El tiempo máximo para esta prueba es de 5 minutos.
 
