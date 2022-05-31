@@ -6,7 +6,6 @@
 #include <math.h>
 #include <string>
 #include <iostream>
-#include "find_my_mates/Info.h"
 
 int fr =  10;
 int current_person;

@@ -69,8 +69,9 @@ Quaternion ToQuaternion(double yaw, double pitch, double roll) // yaw (Z), pitch
     return q;
 }
 
-void angleCalc(geometry_msgs::PoseStamped::ConstPtr& msg)
-{
+void angleCalc(const geometry_msgs::PoseStamped::ConstPtr& msg)
+{   
+    
     data = *msg;
     last_position.x = data.pose.position.x;
     last_position.y = data.pose.position.y;
@@ -91,6 +92,7 @@ void angleCalc(geometry_msgs::PoseStamped::ConstPtr& msg)
     result.pose.orientation.w = quat.w;
 
     out.publish(result);
+    
 
 }
 
@@ -104,6 +106,7 @@ int main(int argc, char** argv)
     out = nh.advertise<geometry_msgs::PoseStamped>("/navegar_arbitro", fr);
 
     ros::Subscriber in = nh.subscribe("/angle_calc", fr, angleCalc);
+    // hola jajajajaj
 
     ros::spin();
 }
