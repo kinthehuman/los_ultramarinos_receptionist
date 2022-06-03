@@ -53,18 +53,19 @@ class Navegar3TR : public BT::ActionNodeBase
   private:
     ros::NodeHandle nh_;
     ros::Publisher activador ;
-    ros::Publisher angle ;
+    ros::Publisher talkPub ;
     ros::Subscriber sub ;
     ros::Subscriber ageSub ;
     ros::Subscriber resetSub ;
     std::string feedBack = "" ;
     
-    ros::Time time;
+    ros::Time i;
     int a = 0;
 
-    geometry_msgs::PoseStamped positions[7];
+    geometry_msgs::PoseStamped chairs;
     geometry_msgs::PoseStamped sofa;
     geometry_msgs::PoseStamped result;
+    std_msgs::String say;
     bool old;
     int counter = 0;
 

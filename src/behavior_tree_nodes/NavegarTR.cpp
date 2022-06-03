@@ -22,7 +22,7 @@ NavegarTR::NavegarTR(const std::string& name, const BT::NodeConfiguration & conf
 BT::ActionNodeBase(name, config), nh_(), feedBack("")
 {
   activador = nh_.advertise<geometry_msgs::PoseStamped>("move_base_simple/goal", 10);
-  poseSub = nh_.subscribe("/navegar_arbitro", 10, &NavegarTR::posicionNav, this);
+  //poseSub = nh_.subscribe("/navegar_arbitro", 10, &NavegarTR::posicionNav, this);
   sub = nh_.subscribe("/move_base/result", 10, &NavegarTR::messageCallback, this);
 }
 
@@ -31,10 +31,11 @@ void NavegarTR::messageCallback(const move_base_msgs::MoveBaseActionResult::Cons
   feedBack = msg->status.text;
   std::cout << "Resultado Navegacion : " << feedBack << "\n";
 }
-
+/*
 void NavegarTR::posicionNav(const geometry_msgs::PoseStamped::ConstPtr& pose){
   result = *pose;
 }
+*/
 
 void NavegarTR::halt()
 {
@@ -47,6 +48,18 @@ BT::NodeStatus NavegarTR::tick()
   {
     std::cout << a << "\n";
 
+    result.header.stamp = i;
+    result.header.frame_id = "map";
+
+    result.pose.position.x = 0.0;
+    result.pose.position.y = 0.0;
+    result.pose.position.z = 0.0;
+
+    result.pose.orientation.x = 0.0;
+    result.pose.orientation.y = 0.0;
+    result.pose.orientation.z = 0.0;
+    result.pose.orientation.w = 1.0;
+    
     activador.publish(result);
   }
   a++;

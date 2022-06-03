@@ -31,6 +31,7 @@ int main(int argc, char **argv)
   BT::BehaviorTreeFactory factory;
   BT::SharedLibrary loader;
 
+  factory.registerFromPlugin(loader.getOSName("PutaMierda"));
   factory.registerFromPlugin(loader.getOSName("ObservarTR"));
   factory.registerFromPlugin(loader.getOSName("DataCheckTR"));
   factory.registerFromPlugin(loader.getOSName("DataDumpTR"));

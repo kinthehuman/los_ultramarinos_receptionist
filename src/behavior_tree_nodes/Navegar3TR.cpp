@@ -19,14 +19,44 @@
 
 namespace behavior_trees
 {
+
+
 Navegar3TR::Navegar3TR(const std::string& name, const BT::NodeConfiguration & config):
-BT::ActionNodeBase(name, config), nh_(), feedBack(" ")
+BT::ActionNodeBase(name, config), nh_(), feedBack("")
 {
   activador = nh_.advertise<geometry_msgs::PoseStamped>("move_base_simple/goal", 10);
-  angle = nh_.advertise<geometry_msgs::PoseStamped>("/angle_calc", 10);
+  //angle = nh_.advertise<geometry_msgs::PoseStamped>("/angle_calc", 10);
   sub = nh_.subscribe("/move_base/result", 10, &Navegar3TR::messageCallback, this);
   ageSub = nh_.subscribe("/old_data", 10, &Navegar3TR::ageCallback, this);
   resetSub = nh_.subscribe("/navegar_reset", 10, &Navegar3TR::resetCallback, this);
+  talkPub = nh_.advertise<std_msgs::String>("/msg_to_say", 10);
+
+
+    sofa.header.stamp = i;
+    sofa.header.frame_id = "map";
+
+    sofa.pose.position.x = 6.8;
+    sofa.pose.position.y = 3.75;
+    sofa.pose.position.z = 0.0;
+
+    sofa.pose.orientation.x = 0.0;
+    sofa.pose.orientation.y = 0.0;
+    sofa.pose.orientation.z = 0.0;
+    sofa.pose.orientation.w = 1.0;
+
+
+    chairs.header.stamp = i;
+    chairs.header.frame_id = "map";
+
+    chairs.pose.position.x = 1.3;
+    chairs.pose.position.y = 5;
+    chairs.pose.position.z = 0.0;
+
+    chairs.pose.orientation.x = 0.0;
+    chairs.pose.orientation.y = 0.0;
+    chairs.pose.orientation.z = 0.0;
+    chairs.pose.orientation.w = 1.0;
+
 }
 
 void Navegar3TR::ageCallback(const std_msgs::Bool::ConstPtr& age){
@@ -58,9 +88,10 @@ BT::NodeStatus Navegar3TR::tick()
       result = sofa;
     }
     else{
-      result = positions[counter];
+      result = chairs;
     }
-
+    say.data = "Follow me please";
+    talkPub.publish(say);
     activador.publish(result);
     
   }
@@ -71,19 +102,15 @@ BT::NodeStatus Navegar3TR::tick()
     if (feedBack == "Goal reached.")
     {
 
-      angle.publish(result);
+      //angle.publish(result);
       a = 0;
-
-      if(!old){
-        counter++;
-      }
 
       feedBack = "";
       return BT::NodeStatus::SUCCESS;
     }
     else
     {
-      return BT::NodeStatus::FAILURE;
+      return BT::NodeStatus::SUCCESS;
     }
   }
   return BT::NodeStatus::RUNNING;

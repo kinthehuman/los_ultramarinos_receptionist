@@ -47,7 +47,7 @@ BT::NodeStatus Navegar2TR::tick()
     msg.header.stamp = i;
     msg.header.frame_id = "map";
 
-    msg.pose.position.x = 0.0;
+    msg.pose.position.x = 4;
     msg.pose.position.y = 0.0;
     msg.pose.position.z = 0.0;
 
@@ -68,7 +68,7 @@ BT::NodeStatus Navegar2TR::tick()
     }
     else
     {
-      return BT::NodeStatus::FAILURE;
+      return BT::NodeStatus::SUCCESS;
     }
   }
   return BT::NodeStatus::RUNNING;
