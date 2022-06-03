@@ -31,14 +31,14 @@ int main(int argc, char **argv)
   BT::BehaviorTreeFactory factory;
   BT::SharedLibrary loader;
 
-  factory.registerFromPlugin(loader.getOSName("Observar"));
-  factory.registerFromPlugin(loader.getOSName("DataCheck"));
-  factory.registerFromPlugin(loader.getOSName("DataDump"));
-  factory.registerFromPlugin(loader.getOSName("Navegar3"));
-  factory.registerFromPlugin(loader.getOSName("Navegar2"));
-  factory.registerFromPlugin(loader.getOSName("ControlData"));
-  factory.registerFromPlugin(loader.getOSName("ControlDump"));
-  factory.registerFromPlugin(loader.getOSName("ControlObservador"));
+  factory.registerFromPlugin(loader.getOSName("ObservarTR"));
+  factory.registerFromPlugin(loader.getOSName("DataCheckTR"));
+  factory.registerFromPlugin(loader.getOSName("DataDumpTR"));
+  factory.registerFromPlugin(loader.getOSName("Navegar3TR"));
+  factory.registerFromPlugin(loader.getOSName("Navegar2TR"));
+  factory.registerFromPlugin(loader.getOSName("ControlDataTR"));
+  factory.registerFromPlugin(loader.getOSName("ControlDumpTR"));
+  factory.registerFromPlugin(loader.getOSName("ControlObservadorTR"));
 
   auto blackboard = BT::Blackboard::create();
 

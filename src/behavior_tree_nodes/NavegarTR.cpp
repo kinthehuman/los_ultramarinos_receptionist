@@ -18,30 +18,30 @@
 
 namespace behavior_trees
 {
-Navegar::Navegar(const std::string& name, const BT::NodeConfiguration & config):
+NavegarTR::NavegarTR(const std::string& name, const BT::NodeConfiguration & config):
 BT::ActionNodeBase(name, config), nh_(), feedBack(" ")
 {
   activador = nh_.advertise<geometry_msgs::PoseStamped>("move_base_simple/goal", 10);
-  poseSub = nh_.subscribe("/navegar_arbitro", 10, &Navegar::posicionNav, this);
-  sub = nh_.subscribe("/move_base/result", 10, &Navegar::messageCallback, this);
+  poseSub = nh_.subscribe("/navegar_arbitro", 10, &NavegarTR::posicionNav, this);
+  sub = nh_.subscribe("/move_base/result", 10, &NavegarTR::messageCallback, this);
 }
 
-void Navegar::messageCallback(const move_base_msgs::MoveBaseActionResult::ConstPtr& msg)
+void NavegarTR::messageCallback(const move_base_msgs::MoveBaseActionResult::ConstPtr& msg)
 {
   feedBack = msg->status.text;
   std::cout << "Resultado Navegacion : " << feedBack << "\n";
 }
 
-void Navegar::posicionNav(const geometry_msgs::PoseStamped::ConstPtr& pose){
+void NavegarTR::posicionNav(const geometry_msgs::PoseStamped::ConstPtr& pose){
   result = *pose;
 }
 
-void Navegar::halt()
+void NavegarTR::halt()
 {
   ROS_INFO("Seguir halt");
 }
 
-BT::NodeStatus Navegar::tick()
+BT::NodeStatus NavegarTR::tick()
 {
   if (a == 5)
   {
@@ -68,5 +68,5 @@ BT::NodeStatus Navegar::tick()
 
 BT_REGISTER_NODES(factory)
 {
-  factory.registerNodeType<behavior_trees::Navegar>("Navegar");
+  factory.registerNodeType<behavior_trees::NavegarTR>("NavegarTR");
 }

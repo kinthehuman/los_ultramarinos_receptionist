@@ -19,19 +19,19 @@
 namespace behavior_trees
 {
 
-ControlData::ControlData(const std::string& name , const BT::NodeConfiguration & config):
-BT::ActionNodeBase(name, config), nh_(), feedBack(" ")
+ControlDataTR::ControlDataTR(const std::string& name , const BT::NodeConfiguration & config):
+BT::ActionNodeBase(name, config), nh_(), feedBack(true)
 {
-  sub = nh_.subscribe<std_msgs::Bool>("/reset_data", 10, &ControlData::messageCallback, this);
+  sub = nh_.subscribe<std_msgs::Bool>("/reset_data", 10, &ControlDataTR::messageCallback, this);
 }
 
-void ControlData::messageCallback(const std_msgs::Bool::ConstPtr& msg)
+void ControlDataTR::messageCallback(const std_msgs::Bool::ConstPtr& msg)
 {
   feedBack = msg->data;
   std::cout << msg->data;
 }
 
-void ControlData::halt()
+void ControlDataTR::halt()
 {
   //ROS_INFO("Seguir halt");
   //std_msgs::Bool act;
@@ -39,10 +39,10 @@ void ControlData::halt()
   //activador.publish(act);
 }
 
-BT::NodeStatus ControlData::tick()
+BT::NodeStatus ControlDataTR::tick()
 {
 
-  if (!feedBack)
+  if (feedBack)
   {
     return BT::NodeStatus::FAILURE;
   }
@@ -57,5 +57,5 @@ BT::NodeStatus ControlData::tick()
 
 BT_REGISTER_NODES(factory)
 {
-  factory.registerNodeType<behavior_trees::ControlData>("ControlData");
+  factory.registerNodeType<behavior_trees::ControlDataTR>("ControlDataTR");
 }

@@ -5,30 +5,30 @@
         <KeepRunningUntilFailure>
             <ForceSuccess>
                 <Sequence>
-                    <Navegar2>
-                    <DataCheck>
+                    <Navegar2TR>
+                    <DataCheckTR>
                     <Fallback>
-                        <ControlObservador>
+                        <ControlObservadorTR>
                         <Sequence>
-                            <Navegar3>
-                            <Observar>
+                            <Navegar3TR>
+                            <ObservarTR>
                         </Sequence>
                     </Fallback>
-                    <Navegar>
-                    <DataDump>
+                    <NavegarTR>
+                    <DataDumpTR>
                 </Sequence>
             </ForceSuccess>
         </KeepRunningUntilFailure>
     </BehaviorTree>
     <!-- ////////// -->
     <TreeNodesModel>
-       <Action ID="Observar"/>
-       <Action ID="DataCheck"/>
-       <Action ID="DataDump"/>
-       <Action ID="Navegar3"/>
-       <Action ID="Navegar"/>
-       <Action ID="Navegar2"/>
-       <Condition ID="ControlObservador"/>
+       <Action ID="ObservarTR"/>
+       <Action ID="DataCheckTR"/>
+       <Action ID="DataDumpTR"/>
+       <Action ID="Navegar3TR"/>
+       <Action ID="NavegarTR"/>
+       <Action ID="Navegar2TR"/>
+       <Condition ID="ControlObservadorTR"/>
     </TreeNodesModel>
     <!-- ////////// -->
 </root>

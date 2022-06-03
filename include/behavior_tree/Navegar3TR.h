@@ -29,11 +29,11 @@
 namespace behavior_trees
 {
 
-class Navegar3 : public BT::ActionNodeBase
+class Navegar3TR : public BT::ActionNodeBase
 {
   public:
 
-    explicit Navegar3(const std::string& name , const BT::NodeConfiguration& config);
+    explicit Navegar3TR(const std::string& name , const BT::NodeConfiguration& config);
 
     void halt();
 

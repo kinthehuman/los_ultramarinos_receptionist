@@ -18,25 +18,25 @@
 
 namespace behavior_trees
 {
-Navegar2::Navegar2(const std::string& name, const BT::NodeConfiguration & config):
+Navegar2TR::Navegar2TR(const std::string& name, const BT::NodeConfiguration & config):
 BT::ActionNodeBase(name, config), nh_(), feedBack(" ")
 {
   activador = nh_.advertise<geometry_msgs::PoseStamped>("move_base_simple/goal", 10);
-  sub = nh_.subscribe("/move_base/result", 10, &Navegar2::messageCallback, this);
+  sub = nh_.subscribe("/move_base/result", 10, &Navegar2TR::messageCallback, this);
 }
 
-void Navegar2::messageCallback(const move_base_msgs::MoveBaseActionResult::ConstPtr& msg)
+void Navegar2TR::messageCallback(const move_base_msgs::MoveBaseActionResult::ConstPtr& msg)
 {
   feedBack = msg->status.text;
   std::cout << "Resultado Navegacion : " << feedBack << "\n";
 }
 
-void Navegar2::halt()
+void Navegar2TR::halt()
 {
   ROS_INFO("Seguir halt");
 }
 
-BT::NodeStatus Navegar2::tick()
+BT::NodeStatus Navegar2TR::tick()
 {
   if (a == 5)
   {
@@ -78,5 +78,5 @@ BT::NodeStatus Navegar2::tick()
 
 BT_REGISTER_NODES(factory)
 {
-  factory.registerNodeType<behavior_trees::Navegar2>("Navegar2");
+  factory.registerNodeType<behavior_trees::Navegar2TR>("Navegar2TR");
 }

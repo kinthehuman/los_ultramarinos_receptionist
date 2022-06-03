@@ -19,35 +19,35 @@
 
 namespace behavior_trees
 {
-Navegar3::Navegar3(const std::string& name, const BT::NodeConfiguration & config):
+Navegar3TR::Navegar3TR(const std::string& name, const BT::NodeConfiguration & config):
 BT::ActionNodeBase(name, config), nh_(), feedBack(" ")
 {
   activador = nh_.advertise<geometry_msgs::PoseStamped>("move_base_simple/goal", 10);
   angle = nh_.advertise<geometry_msgs::PoseStamped>("/angle_calc", 10);
-  sub = nh_.subscribe("/move_base/result", 10, &Navegar3::messageCallback, this);
-  ageSub = nh_.subscribe("/old_data", 10, &Navegar3::ageCallback, this);
-  resetSub = nh_.subscribe("/navegar_reset", 10, &Navegar3::resetCallback, this);
+  sub = nh_.subscribe("/move_base/result", 10, &Navegar3TR::messageCallback, this);
+  ageSub = nh_.subscribe("/old_data", 10, &Navegar3TR::ageCallback, this);
+  resetSub = nh_.subscribe("/navegar_reset", 10, &Navegar3TR::resetCallback, this);
 }
 
-void Navegar3::ageCallback(const std_msgs::Bool::ConstPtr& age){
+void Navegar3TR::ageCallback(const std_msgs::Bool::ConstPtr& age){
   old = age->data;
 }
-void Navegar3::resetCallback(const std_msgs::Bool::ConstPtr& reset){
+void Navegar3TR::resetCallback(const std_msgs::Bool::ConstPtr& reset){
   counter = 0;
 }
 
-void Navegar3::messageCallback(const move_base_msgs::MoveBaseActionResult::ConstPtr& msg)
+void Navegar3TR::messageCallback(const move_base_msgs::MoveBaseActionResult::ConstPtr& msg)
 {
   feedBack = msg->status.text;
   std::cout << "Resultado Navegacion : " << feedBack << "\n";
 }
 
-void Navegar3::halt()
+void Navegar3TR::halt()
 {
   ROS_INFO("Seguir halt");
 }
 
-BT::NodeStatus Navegar3::tick()
+BT::NodeStatus Navegar3TR::tick()
 {
   if (a == 5)
   {
@@ -92,5 +92,5 @@ BT::NodeStatus Navegar3::tick()
 
 BT_REGISTER_NODES(factory)
 {
-  factory.registerNodeType<behavior_trees::Navegar3>("Navegar3");
+  factory.registerNodeType<behavior_trees::Navegar3TR>("Navegar3TR");
 }

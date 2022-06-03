@@ -27,11 +27,11 @@
 namespace behavior_trees
 {
 
-class DataCheck : public BT::ActionNodeBase
+class DataCheckTR : public BT::ActionNodeBase
 {
   public:
 
-    explicit DataCheck(const std::string& name , const BT::NodeConfiguration& config);
+    explicit DataCheckTR(const std::string& name , const BT::NodeConfiguration& config);
 
     void halt();
 

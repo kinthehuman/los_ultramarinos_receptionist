@@ -28,11 +28,11 @@
 namespace behavior_trees
 {
 
-class ControlData : public BT::ActionNodeBase
+class ControlDataTR : public BT::ActionNodeBase
 {
   public:
 
-    explicit ControlData(const std::string& name , const BT::NodeConfiguration& config);
+    explicit ControlDataTR(const std::string& name , const BT::NodeConfiguration& config);
 
     void halt();
 

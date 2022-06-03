@@ -19,19 +19,19 @@
 namespace behavior_trees
 {
 
-ControlDump::ControlDump(const std::string& name , const BT::NodeConfiguration & config):
-BT::ActionNodeBase(name, config), nh_(), feedBack(" ")
+ControlDumpTR::ControlDumpTR(const std::string& name , const BT::NodeConfiguration & config):
+BT::ActionNodeBase(name, config), nh_(), feedBack(true)
 {
-  sub = nh_.subscribe<std_msgs::Bool>("/reset_dump", 10, &ControlDump::messageCallback, this);
+  sub = nh_.subscribe<std_msgs::Bool>("/reset_dump", 10, &ControlDumpTR::messageCallback, this);
 }
 
-void ControlDump::messageCallback(const std_msgs::Bool::ConstPtr& msg)
+void ControlDumpTR::messageCallback(const std_msgs::Bool::ConstPtr& msg)
 {
   feedBack = msg->data;
   std::cout << msg->data;
 }
 
-void ControlDump::halt()
+void ControlDumpTR::halt()
 {
   //ROS_INFO("Seguir halt");
   //std_msgs::Bool act;
@@ -39,7 +39,7 @@ void ControlDump::halt()
   //activador.publish(act);
 }
 
-BT::NodeStatus ControlDump::tick()
+BT::NodeStatus ControlDumpTR::tick()
 {
 
   if (!feedBack)
@@ -57,5 +57,5 @@ BT::NodeStatus ControlDump::tick()
 
 BT_REGISTER_NODES(factory)
 {
-  factory.registerNodeType<behavior_trees::ControlDump>("ControlDump");
+  factory.registerNodeType<behavior_trees::ControlDumpTR>("ControlDumpTR");
 }

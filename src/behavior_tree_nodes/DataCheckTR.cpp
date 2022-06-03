@@ -19,20 +19,20 @@
 namespace behavior_trees
 {
 
-DataCheck::DataCheck(const std::string& name , const BT::NodeConfiguration & config):
+DataCheckTR::DataCheckTR(const std::string& name , const BT::NodeConfiguration & config):
 BT::ActionNodeBase(name, config), nh_(), feedBack(" ")
 {
   activador = nh_.advertise<std_msgs::Int32>("/control_data", 10);
-  sub = nh_.subscribe<std_msgs::String>("/status_data", 10, &DataCheck::messageCallback, this);
+  sub = nh_.subscribe<std_msgs::String>("/status_data", 10, &DataCheckTR::messageCallback, this);
 }
 
-void DataCheck::messageCallback(const std_msgs::String::ConstPtr& msg)
+void DataCheckTR::messageCallback(const std_msgs::String::ConstPtr& msg)
 {
   feedBack = msg->data;
   std::cout << msg->data;
 }
 
-void DataCheck::halt()
+void DataCheckTR::halt()
 {
   //ROS_INFO("Seguir halt");
   //std_msgs::Bool act;
@@ -40,7 +40,7 @@ void DataCheck::halt()
   //activador.publish(act);
 }
 
-BT::NodeStatus DataCheck::tick()
+BT::NodeStatus DataCheckTR::tick()
 {
   
   std_msgs::Int32 person;
@@ -69,5 +69,5 @@ BT::NodeStatus DataCheck::tick()
 
 BT_REGISTER_NODES(factory)
 {
-  factory.registerNodeType<behavior_trees::DataCheck>("DataCheck");
+  factory.registerNodeType<behavior_trees::DataCheckTR>("DataCheckTR");
 }
