@@ -71,6 +71,7 @@ add_library(DataDumpTR SHARED src/behavior_tree_nodes/DataDumpTR.cpp)
 add_library(ControlDumpTR SHARED src/behavior_tree_nodes/ControlDumpTR.cpp)
 add_library(ControlDataTR SHARED src/behavior_tree_nodes/ControlDataTR.cpp)
 add_library(ControlObservadorTR SHARED src/behavior_tree_nodes/ControlObservadorTR.cpp)
+add_library(PutaMierda SHARED src/behavior_tree_nodes/PutaMierda.cpp)
 
 
 
@@ -144,6 +145,7 @@ ${catkin_LIBRARIES}
 
 
 list(APPEND plugin_libs
+  PutaMierda
   NavegarTR
   Navegar2TR
   Navegar3TR

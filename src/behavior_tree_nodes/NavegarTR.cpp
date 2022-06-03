@@ -19,7 +19,7 @@
 namespace behavior_trees
 {
 NavegarTR::NavegarTR(const std::string& name, const BT::NodeConfiguration & config):
-BT::ActionNodeBase(name, config), nh_(), feedBack(" ")
+BT::ActionNodeBase(name, config), nh_(), feedBack("")
 {
   activador = nh_.advertise<geometry_msgs::PoseStamped>("move_base_simple/goal", 10);
   poseSub = nh_.subscribe("/navegar_arbitro", 10, &NavegarTR::posicionNav, this);
@@ -59,7 +59,7 @@ BT::NodeStatus NavegarTR::tick()
     }
     else
     {
-      return BT::NodeStatus::FAILURE;
+      return BT::NodeStatus::SUCCESS;
     }
   }
   return BT::NodeStatus::RUNNING;
