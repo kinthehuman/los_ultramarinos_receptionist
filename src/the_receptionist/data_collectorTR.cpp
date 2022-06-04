@@ -55,12 +55,7 @@ void drinkReceived(const std_msgs::String::ConstPtr& drink_)
 void ageReceived(const std_msgs::String::ConstPtr& age_)
 {
 	aSensorsData = *age_;
-    if (aSensorsData.data == "Yes"){
-        person.old = true;
-    }
-    else{
-        person.old = false;
-    }
+    person.old = (stoi(aSensorsData.data) > 50);
     old_person.data = person.old;
     agePub.publish(old_person);
     people_counter++;
